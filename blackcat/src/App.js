@@ -13,7 +13,7 @@ import Table from "./components/Table";
 import NewUser from "./components/NewUser";
 import Login from "./components/Login";
 import { getSelectedProductsRequest } from "./redux/cart";
-import { postMeRequest } from "./redux/login";
+//import { postMeRequest } from "./redux/login";
 import Checkout from "./components/Checkout";
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    dispatch(postMeRequest());
+    //dispatch(postMeRequest());
     cart.forEach((element) => {
       dispatch(
         getSelectedProductsRequest({
@@ -36,7 +36,6 @@ function App() {
   }, []);
 
   let arrCart = useSelector((state) => state.selected);
-  console.log("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 
   return (
     <div>

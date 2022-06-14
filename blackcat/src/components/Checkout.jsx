@@ -5,16 +5,10 @@ function Checkout() {
     const cart=JSON.parse(localStorage.getItem('cart'))
     const user=JSON.parse(localStorage.getItem('user'))
 
-
-
     const handleSubmit=(e)=>{
          e.preventDefault()
-        console.log("SOY USER",user)
-        console.log("SOY CART",cart)
-
         axios.post("http://localhost:3001/api/order/buy",{data:[user.id, cart]})
     }
-
 
   return (
     <div>

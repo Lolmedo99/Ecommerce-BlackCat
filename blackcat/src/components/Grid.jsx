@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-
 import { getProductsRequest } from "../redux/products";
 import Card from "./Card";
 
@@ -11,6 +9,8 @@ function Grid() {
   useEffect(() => {
     dispatch(getProductsRequest());
   }, []);
+
+
   return (
     <>
       <div>

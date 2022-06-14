@@ -5,7 +5,7 @@ export const getProductDetailsRequest = createAsyncThunk(
   "PRODUCT_DETAILS",
   (productId) => {
     return axios
-      .get(`http://localhost:3001/api/products/${productId}`)
+      .get(`http://localhost:3001/api/products/get/${productId}`)
       .then((res) => res.data);
   }
 );

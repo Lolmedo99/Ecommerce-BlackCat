@@ -4,7 +4,6 @@ import { TbTruckDelivery } from "react-icons/tb";
 import { GrCreditCard } from "react-icons/gr";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-
 import QtySelector from "./QtySelector";
 import { getProductDetailsRequest } from "../redux/productDetails";
 
@@ -13,9 +12,12 @@ function DetailsCard() {
   const dispatch = useDispatch();
   const product = useSelector((state) => state.details);
 
+
   useEffect(() => {
     dispatch(getProductDetailsRequest(productId));
   }, []);
+
+  
   return (
     <>
       <div class="column py-2"></div>
@@ -43,13 +45,12 @@ function DetailsCard() {
               </p>
               {product.stock === 0 ? (
                 <div class="card-footer p-2">
-                  {" "}
                   <p class="has-text-left is-medium is-size-6 m-1">
                     No hay stock disponible!
-                  </p>{" "}
+                  </p>
                 </div>
               ) : (
-                <QtySelector product={product} />
+                <QtySelector product={product}/>
               )}
             </div>
           </div>

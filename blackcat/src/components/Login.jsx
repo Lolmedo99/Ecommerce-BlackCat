@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { postLoginRequest } from "../redux/login";
 import useInput from "../hooks/useInputs";
 import { useNavigate } from "react-router";

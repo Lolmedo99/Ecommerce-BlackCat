@@ -8,7 +8,7 @@ import productsReducer from "./products";
 import tableReducer from "./table";
 
 const store = configureStore({
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+  //middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
   reducer: {
     cont: cartContReducer,
     details: productDetailsReducer,
