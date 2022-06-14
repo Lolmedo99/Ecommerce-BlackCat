@@ -20,11 +20,12 @@ productRouter.get("/all", (req, res) => {
 });
 
 //Busca un producto en especifico (Por id)
-productRouter.get("/:id", (req, res) => {
+productRouter.get("/get/:id", (req, res) => {
   Product.findByPk(req.params.id)
     .then((data) => res.send(data))
     .catch((err) => console.log(err));
 });
+
 
 //Editar un producto
 productRouter.put("/edit/:id", (req, res) => {
@@ -33,4 +34,22 @@ productRouter.put("/edit/:id", (req, res) => {
     .catch((err) => console.log(err));
 });
 
+//Eliminar un producto
+productRouter.delete("/:id", (req, res) => {
+  Product.destroy({ where: { id: req.params.id } })
+    .then((data) => res.status(204).send("DELETED"))
+    .catch((err) => console.log(err));
+});
+
+
+// RUTA PARA SEEDEAR PRODUCTOS DE A MUCHOS
+// BORRAR ANTES DE LA DEMO!!!!!!!!
+
+productRouter.post("/addmany", (req, res) => {
+
+    Product.bulkCreate(req.body)
+    .then(data => res.status(201).send(data))
+    .catch((err) => console.log(err));
+
+});
 module.exports = productRouter;

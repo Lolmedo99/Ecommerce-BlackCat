@@ -2,14 +2,13 @@ const express= require("express")
 const app= express()
 const db= require("./config/db")
 const cors= require("cors")
-const models= require("./models/index")
-const User= require("./models/User")
 const routes= require("./routes/index")
 const volleyball = require("volleyball")
 const cookieParser= require("cookie-parser")
 const sessions= require("express-session")
 const passport= require("passport")
 const LocalStrategy= require("passport-local").Strategy
+const User= require("./models/User")
 
 app.use(cors())
 

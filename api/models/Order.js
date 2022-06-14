@@ -10,6 +10,7 @@ Order.init(
     status: {
       type: s.STRING,
       allowNull: false,
+      defaultValue: "Pending"
     },
   },
   { sequelize: db, modelName: "orders" }
