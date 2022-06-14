@@ -13,14 +13,14 @@ function Table() {
   const tableProducts = useSelector((state) => state.table);
   const navigate=useNavigate()
   const user= JSON.parse(localStorage.getItem('user'))|| undefined
+  
+  
   const handleCheckout=()=>{
     if(user){navigate('/checkout')}
    else{navigate('/login')} 
   }
 
-  console.log('PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP',arrCart)
   const handleRemove=(item)=>{
-    console.log('SOY PRE',arrCart)
      dispatch(deleteSelectedProductsRequest(item))
   }
  
@@ -73,7 +73,7 @@ function Table() {
                 <th>{item.name}</th>
                <th>{arrCart.length===tableProducts.length && arrCart[index].amount}</th>
                 <th>${item.price}</th>
-                <th>{<VscTrash class="is-clickable" onClick={()=>handleRemove(item)} />}</th>
+                <th>{<VscTrash class="is-clickable" onClick={()=>handleRemove(item)} size={20}/>}</th>
               </tr>
             </tbody>
           ))}

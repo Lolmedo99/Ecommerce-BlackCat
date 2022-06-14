@@ -10,15 +10,15 @@ const QtySelector = ({ product }) => {
   const dispatch = useDispatch();
   const arrCart = useSelector((state) => state.selected);
   const currentProd=arrCart.find(element=> element.productId===product.id)
-  const [value, setValue] = useState(currentProd?currentProd.amount:0);
+  const [value, setValue] = useState(currentProd?currentProd.amount:1);
 
-  
+
   const handleIncrease = (e) => {
     setValue(value + 1);
   };
 
   const handleDecrease = (e) => {
-    if (value > 0) {
+    if (value > 1) {
       setValue(value - 1);
     }
   };
