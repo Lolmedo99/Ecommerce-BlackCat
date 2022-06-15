@@ -3,9 +3,7 @@ import { VscTrash } from "react-icons/vsc";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getTableRequest, cleanTableRequest } from "../redux/table";
-import {deleteSelectedProductsRequest} from "../redux/cart"
-
-
+import { deleteSelectedProductsRequest } from "../redux/cart";
 
 function Table() {
   const dispatch = useDispatch();
@@ -31,7 +29,6 @@ function Table() {
     });
   }, [arrCart]);
 
-  
   return (
     <>
       <div class="column py-2"></div>
@@ -71,14 +68,21 @@ function Table() {
                   </figure>
                 </th>
                 <th>{item.name}</th>
-               <th>{arrCart.length===tableProducts.length && arrCart[index].amount}</th>
+                <th>
+                  <p class="has-text-centered">
+                    {arrCart.length === tableProducts.length &&
+                      arrCart[index].amount}
+                  </p>
+                </th>
                 <th>${item.price}</th>
                 <th>{<VscTrash class="is-clickable" onClick={()=>handleRemove(item)} size={20}/>}</th>
               </tr>
             </tbody>
           ))}
         </table>
-        <button class="button" onClick={handleCheckout}>PAGAR</button>
+        <button class="button is-black" onClick={handleCheckout}>
+          Siguiente
+        </button>
       </div>
       <div class="column py-6"></div>
       <div class="column py-6"></div>

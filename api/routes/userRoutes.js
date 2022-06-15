@@ -8,12 +8,13 @@ const s = require('sequelize')
 
 
 //Registro de un Usuario
-userRouter.post("/register", (req, res) => {
-  User.create(req.body)
-    .then((user) => {
-      res.status(201).send(user)
-    })
-    .catch(err => console.log(err))
+userRouter.post("/register", async (req, res) => {
+  try {
+    const user = await User.create(req.body)
+    res.status(201).send(user)
+  } catch (error) {
+    console.log(error)
+  }
 })
 
 //Log in
@@ -30,46 +31,57 @@ userRouter.post("/logout", function (req, res, next) {
 })
 
 //Actualiza los datos del User
-userRouter.put("/edit/:id", (req, res) => {
-  const id = req.params.id
-  const data = req.body
-  User.findByPk(id)
-    .then((user) => {
-      user.update(data)
-    })
-    .then((newData) => {
-      res.status(200).send(newData)
-    })
-    .catch((err) => {
-      res.status(400).send(err)
-    })
+userRouter.put("/edit/:id", async (req, res) => {
+ try {
+    const newData = await User.update(req.body, { where: { id: req.params.id } })
+    res.status(200).send(newData)
+  } catch (error) {
+    res.status(400).send(error)
+  }
 })
 
 //Devuelve todos los users menos quien pide
- userRouter.get("/all/:id", (req, res) => {
-  User.findAll({ where:{ [s.Op.not]: {id: req.params.id}}, include: { model: Order } })
-    .then(data => res.send(data))
-    .catch(err => console.log(err))
+userRouter.get("/all/:id", async (req, res) => {
+  try {
+    const data = await User.findAll({
+      where: { [s.Op.not]: { id: req.params.id } },
+      include: { model: Order }
+    })
+    res.send(data)
+  } catch (error) {
+    console.log(error)
+  }
 })
 
 //Devuelve un User x id
-userRouter.get("/get/:id", (req, res) => {
-  const id = req.params.id
-  User.findByPk(id, { include: { model: Order } })
-    .then((user) => res.send(user))
+userRouter.get("/get/:id", async (req, res) => {
+  try {
+    const user = await User.findByPk(req.params.id, { include: { model: Order } })
+    res.send(user)
+  } catch (error) {
+    console.log(error)
+  }
 })
 
 //Promueve o degrada a Admin
-userRouter.put("/promote/:id", (req, res) => {
-  const { admin } = req.body
-  res.sendStatus(200)
+userRouter.put("/promote/:id", async (req, res) => {
+  try {
+    const newData = await User.update(req.body, { where: { id: req.params.id } })
+    res.status(200).send(newData)
+  } catch (error) {
+    res.status(400).send(error)
+  }
 })
 
 //Eliminar un User
-userRouter.delete("/delete/:id", (req, res) => {
-  User.destroy({ where: { id: req.params.id } })
-    .then((data) => res.status(204).send("DELETED"))
-    .catch((err) => console.log(err));
+userRouter.delete("/delete/:id", async (req, res) => {
+try {
+     await User.destroy({ where: { id: req.params.id } })
+     res.status(204).send("DELETED")
+} catch (error) {
+  console.log(error)
+}
 });
+
 
 module.exports = userRouter

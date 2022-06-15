@@ -7,14 +7,19 @@ import NavBar from "./components/NavBar";
 import Home from "./components/Home";
 import Footer from "./components/Footer";
 import Corporate from "./components/Corporate";
-import CartGrid from "./components/CartGrid";
 import DetailsCard from "./components/DetailsCard";
 import Table from "./components/Table";
 import NewUser from "./components/NewUser";
 import Login from "./components/Login";
 import { getSelectedProductsRequest } from "./redux/cart";
+<<<<<<< HEAD
 //import { postMeRequest } from "./redux/login";
+=======
+import { postMeRequest } from "./redux/login";
+import Contact from "./components/Contact";
+>>>>>>> 6530b7e129eebbf6e55d7ec77e24ea32d52858e8
 import Checkout from "./components/Checkout";
+import UsersList from "./components/UsersList";
 
 function App() {
   const dispatch = useDispatch();
@@ -23,7 +28,6 @@ function App() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    //dispatch(postMeRequest());
     cart.forEach((element) => {
       dispatch(
         getSelectedProductsRequest({
@@ -55,7 +59,9 @@ function App() {
         />
         <Route path="/singup" element={<NewUser />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/users_list" element={<UsersList />} />
       </Routes>
       <Footer />
     </div>

@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { RiShoppingCart2Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
-import { ReactReduxContext, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { CgProfile } from "react-icons/cg";
 
 import { postLogoutRequest, postMeRequest } from "../redux/login";
 
 function NavBar() {
-  const update=useSelector(state=>state.cont) ;
+  const update = useSelector((state) => state.cont);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const cart = JSON.parse(localStorage.getItem("cart")) || undefined;
@@ -29,37 +29,33 @@ function NavBar() {
       role="navigation"
       aria-label="main navigation"
     >
-      <div class="navbar-brand ">
+      <div class="navbar-brand mt-1">
         <Link to={"/"}>
-          <p class="navbar-item item-is-aling-centered" href="https://bulma.io">
-            <img
-              src="https://i.postimg.cc/sxTxGF1s/Blackcat-Logo.png"
-              width={170}
-              height={40}
-              alt="Logo"
-            />
-          </p>
+          <div class="column is-12">
+            <p class="navbar-item ">
+              <img
+                src="https://i.postimg.cc/sxTxGF1s/Blackcat-Logo.png"
+                alt="Logo"
+              />
+            </p>
+          </div>
         </Link>
+        <p class="navbar-burger" id="burger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </p>
       </div>
 
-      <div id="navbarBasicExample" class="navbar-menu">
-        <div class="navbar-start"></div>
-        <div class="columns is-multiline">
+      <div class="navbar-menu" id="navOptions">
+        <div class="navbar-start ">
+          <div class="column is-full is-invisible">prueba para acomodar</div>
+        </div>
+
+        <div class="columns is-multiline mt-4">
           <div class="column is-full ">
-            <div class="columns mt-3 is-gapless">
-              <div class="column is-11 is-relative is-flex ">
-                <input class="input" type="text" placeholder="Buscar..." />
-
-                <button class="button">
-                  <FaSearch />
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="column is-full is-flex-direction-row">
             <div class="columns">
-              <div class="column">
+              <div class="column ">
                 <Link to={"/"}>
                   <p class="navbar-item">Inicio</p>
                 </Link>
@@ -79,7 +75,7 @@ function NavBar() {
                 </div>
               </div>
               <div class="column">
-                <Link to={"/contacto"}>
+                <Link to={"/contact"}>
                   <p class="navbar-item">Contacto</p>
                 </Link>
               </div>
@@ -99,7 +95,7 @@ function NavBar() {
                 <>
                   <div class="column is-flex">
                     <CgProfile size={30} />
-                    <p class="subtitle mx-3">Hola {userJson.name}!</p>
+                    <p class="subtitle">Hola {userJson.name}!</p>
                   </div>
                   <p class="button" onClick={handleLogout}>
                     <strong class="has-text-black-bis">Logout</strong>
