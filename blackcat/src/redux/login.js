@@ -13,6 +13,7 @@ export const postLoginRequest = createAsyncThunk(
       name: user.data.name,
       id: user.data.id,
       email: user.data.email,
+      admin: user.data.admin,
     };
     localStorage.setItem("user", JSON.stringify(userData));
     return userData;

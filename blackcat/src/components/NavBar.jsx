@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { CgProfile } from "react-icons/cg";
-
 import { postLogoutRequest, postMeRequest } from "../redux/login";
+
 
 function NavBar() {
   const update = useSelector((state) => state.cont);
@@ -93,7 +93,7 @@ function NavBar() {
             <div class="buttons">
               {user ? (
                 <>
-                  <div class="column is-flex">
+                  <div class="column is-flex is-clickable" onClick={()=>navigate('/myuser')}>
                     <CgProfile size={30} />
                     <p class="subtitle">Hola {userJson.name}!</p>
                   </div>

@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-import React, { useEffect } from "react";
-=======
 import React, { useEffect, useState } from "react";
-import axios from "axios";
->>>>>>> 6530b7e129eebbf6e55d7ec77e24ea32d52858e8
 import { useDispatch, useSelector } from "react-redux";
 import { getProductsRequest } from "../redux/products";
 import Card from "./Card";
