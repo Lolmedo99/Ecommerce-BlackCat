@@ -42,6 +42,7 @@ function Checkout() {
         cart,
       ],
     });
+    localStorage.removeItem("cart");
   };
 
   
@@ -156,7 +157,7 @@ function Checkout() {
                 class="button is-black is-pulled-right"
                 onClick={(e) => {
                   handleSubmit(e);
-                  navigate("/");
+                  navigate("/post_buy");
                   window.open(
                     "https://www.mercadopago.com.ar/developers/es",
                     "_blank"

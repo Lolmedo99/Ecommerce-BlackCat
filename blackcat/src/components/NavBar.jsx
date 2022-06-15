@@ -49,7 +49,7 @@ function NavBar() {
 
       <div class="navbar-menu" id="navOptions">
         <div class="navbar-start ">
-          <div class="column is-full is-invisible">prueba para acomodar</div>
+          <div class="column is-full is-invisible">prueba arreglo navbar</div>
         </div>
 
         <div class="columns is-multiline mt-4">
@@ -61,18 +61,9 @@ function NavBar() {
                 </Link>
               </div>
               <div class="column">
-                <div class="navbar-item has-dropdown is-hoverable">
-                  <p class="navbar-link is-tab">Productos</p>
-
-                  <div class="navbar-dropdown">
-                    <Link to={"/pedidos"}>
-                      <p class="navbar-item">Pastelería</p>
-                    </Link>
-                    <Link to={"/adicionales"}>
-                      <p class="navbar-item">Adicionales</p>
-                    </Link>
-                  </div>
-                </div>
+                <Link to={"/pedidos"}>
+                  <p class="navbar-item">Pastelería</p>
+                </Link>
               </div>
               <div class="column">
                 <Link to={"/contact"}>

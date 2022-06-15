@@ -1,6 +1,25 @@
+import axios from "axios";
 import React from "react";
 
+import useInput from "../hooks/useInputs";
+
 const Contact = () => {
+  const name = useInput();
+  const email = useInput();
+  const phone = useInput();
+  const text = useInput();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios.post("http://localhost:3001/api/users/contacto", {
+      name: name.value,
+      email: email.value,
+      phone: phone.value,
+      text: text.value,
+    });
+    e.target.reset();
+  };
+
   return (
     <>
       <div class="column is-4 is-offset-4">
@@ -15,23 +34,38 @@ const Contact = () => {
           </picture>
         </div>
         <div className="layout m-5" color="color2">
-          <form>
+          <form onSubmit={handleSubmit}>
             <div class="field">
               <label class="label">Nombre</label>
               <div class="control">
-                <input class="input" type="text" />
+                <input
+                  class="input"
+                  type="text"
+                  onChange={name.onChange}
+                  required
+                />
               </div>
             </div>
             <div class="field">
               <label class="label">Email</label>
               <div class="control">
-                <input class="input" type="email" />
+                <input
+                  class="input"
+                  type="email"
+                  onChange={email.onChange}
+                  required
+                />
               </div>
             </div>
             <div class="field">
               <label class="label">Teléfono</label>
               <div class="control">
-                <input class="input" type="text" />
+                <input
+                  class="input"
+                  type="text"
+                  onChange={phone.onChange}
+                  required
+                />
               </div>
             </div>
             <div class="field">
@@ -40,6 +74,8 @@ const Contact = () => {
                 <textarea
                   class="textarea"
                   placeholder="Escriba aquí su mensaje o consulta"
+                  onChange={text.onChange}
+                  required
                 ></textarea>
               </div>
             </div>

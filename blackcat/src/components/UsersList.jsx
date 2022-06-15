@@ -1,24 +1,40 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState, forceUpdate } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteUsersRequest, getUsersRequest } from "../redux/getUsers";
 import { VscTrash } from "react-icons/vsc";
+import { FaCheck } from "react-icons/fa";
+import { TbLetterX } from "react-icons/tb";
+import { createAdminRequest, removeAdminRequest } from "../redux/giveAdmin";
 
 function UsersList() {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users);
-  if (localStorage.getItem("user")) {
-  }
   const me = JSON.parse(localStorage.getItem("user")) || undefined;
 
   const handleDelete = (userId) => {
     dispatch(deleteUsersRequest(userId));
-    //setTimeout(() => window.location.reload(), 500);
+    window.location.reload();
+  };
+
+  const handleMakeAdmin = (userId) => {
+    dispatch(createAdminRequest(userId));
+    window.location.reload();
+  };
+
+  const handleRemoveAdmin = (userId) => {
+    dispatch(removeAdminRequest(userId));
+    window.location.reload();
   };
 
   useEffect(() => {
     dispatch(getUsersRequest(me.id));
   }, []);
+
+  useEffect(() => {
+    console.log("ESTA FUNCANDO CON USERS");
+  }, [users]);
+
   return (
     <div>
       <div class="py-6"></div>
@@ -26,7 +42,7 @@ function UsersList() {
         <div class="column is-full">
           <p class="title has-text-centered">Usuarios</p>
         </div>
-        <div class="column is-6 is-offset-3">
+        <div class="column is-6 is-offset-2">
           <table class="table is-hoverable has-background-color2">
             <thead>
               <tr>
@@ -34,7 +50,14 @@ function UsersList() {
                 <th>NOMBRE</th>
                 <th>APELLIDO</th>
                 <th>EMAIL</th>
-                <th>ADMIN</th>
+                <th>
+                  <p class="has-text-centered">ADMIN</p>
+                </th>
+                <th>
+                  <p class="has-text-centered">
+                    <abbr title="Modificar status de admin">MOD</abbr>
+                  </p>
+                </th>
                 <th>BORRAR</th>
               </tr>
             </thead>
@@ -48,9 +71,23 @@ function UsersList() {
                       <th>{user.email}</th>
                       <th>
                         <p class="has-text-centered">
-                          <label class="checkbox">
-                            <input type="checkbox" />
-                          </label>
+                          {user.admin === false ? "NO" : "SI"}
+                        </p>
+                      </th>
+                      <th>
+                        <p class="has-text-centered">
+                          <button
+                            class="button is-small"
+                            onClick={() => handleMakeAdmin(user.id)}
+                          >
+                            <FaCheck />
+                          </button>
+                          <button
+                            class="button is-small"
+                            onClick={() => handleRemoveAdmin(user.id)}
+                          >
+                            <TbLetterX />
+                          </button>
                         </p>
                       </th>
                       <th>

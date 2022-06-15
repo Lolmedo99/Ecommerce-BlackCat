@@ -15,8 +15,8 @@ import { postMeRequest } from "./redux/login";
 import Contact from "./components/Contact";
 import Checkout from "./components/Checkout";
 import UsersList from "./components/UsersList";
+import PostBuy from "./components/PostBuy";
 import User from "./components/User";
-import Admin from "./components/admin";
 
 function App() {
   const dispatch = useDispatch();
@@ -54,6 +54,7 @@ function App() {
         <Route path="/users_list" element={<UsersList />} />
         <Route path="/myuser" element={<User />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/post_buy" element={<PostBuy />} />
       </Routes>
       <Footer />
     </div>

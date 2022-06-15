@@ -2,21 +2,31 @@ import React from "react";
 
 const Corporate = () => {
   return (
-    <section class="has-navbar-fixed-top p-6 mt-6">
-      <div class="columns is-vcentered mt-6">
-        <figure class="column is-one-third image is-56x56">
-          <img
-            class="is-rounded"
-            src="https://d2r9epyceweg5n.cloudfront.net/stores/001/461/050/rte/IMG_8779-01.jpeg"
-            alt="corporate"
-          />
-        </figure>
-        <p class="has-text-centered p-5">
-          Para productos personalizados enviar correo electronico a
-          empresariales@blackcat.com
-        </p>
+    <>
+      <div class="mt-6"></div>
+      <div class="columns is-vcentered">
+        <div class="column is-3 is-offset-2">
+          <figure>
+            <img
+              class=""
+              src="https://d2r9epyceweg5n.cloudfront.net/stores/001/461/050/rte/IMG_8779-01.jpeg"
+              alt="corporate"
+              width={500}
+            />
+          </figure>
+        </div>
+        <div class="column  is-4">
+          <p class="mb-2">
+            Para consultas por pedidos empresariales/corporativos comunicarse
+            por mail a :blackcatpasteleria@gmail.com
+          </p>
+          <p>
+            ♡ Las reservas se realizan con un mínimo de 7 días de anticipación
+          </p>
+          <p>♡ Logística a coordinar</p>
+        </div>
       </div>
-    </section>
+    </>
   );
 };
 

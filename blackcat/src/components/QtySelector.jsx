@@ -43,7 +43,12 @@ const QtySelector = ({ product}) => {
         <input class="has-text-centered" size="2" readOnly={true} value={value} />
         <button onClick={() => handleIncrease(value)}> +</button>
       </div>
-      <RiShoppingCart2Line onClick={handleSubmit} size={30} color={""} />
+      <RiShoppingCart2Line
+        class="is-clickable"
+        onClick={handleSubmit}
+        size={30}
+        color={""}
+      />
     </div>
   );
 };
