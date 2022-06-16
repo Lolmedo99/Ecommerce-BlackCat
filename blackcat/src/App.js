@@ -17,6 +17,9 @@ import Checkout from "./components/Checkout";
 import UsersList from "./components/UsersList";
 import PostBuy from "./components/PostBuy";
 import User from "./components/User";
+import Admin from "./components/Admin";
+import NotFound from "./components/NotFound";
+import axios from "axios";
 
 function App() {
   const dispatch = useDispatch();
@@ -55,6 +58,7 @@ function App() {
         <Route path="/myuser" element={<User />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/post_buy" element={<PostBuy />} />
+        <Route path="/*" element={<NotFound />} />
       </Routes>
       <Footer />
     </div>

@@ -17,19 +17,22 @@ const getName=(id)=>{return prodOrder.find((element)=>element.id===id)}
 
 
 return(
-<table class="table is-hoverable has-background-color2">
+<table class="table is-hoverable has-background-color2" style={{height:'100%',}}>
     <thead>
-        <tr>Orden #{order.id}</tr>
+        <tr class='is-size-3'>Orden #{order.id}</tr>
         <tr>
+            <th></th>
             <th>PRODUCTO</th>
             <th>CANTIDAD</th>
         </tr>
     </thead>
         {order.order_items.map((order_item)=>{
         let currentProd=getName(order_item.productId);
+        console.log(currentProd)
         return(
         <tbody>
         <tr>
+            <th>{currentProd && <img src={currentProd.photo} style={{height:'60px', width:'60px'}} alt="cake"></img>}</th>
             <th>{currentProd?currentProd.name:'Producto'}</th>
             <th>{order_item.amount}</th>
         </tr>

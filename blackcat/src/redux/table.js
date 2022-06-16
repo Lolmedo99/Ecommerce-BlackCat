@@ -23,12 +23,3 @@ const tableReducer = createReducer([], {
 });
 
 export default tableReducer;
-
-//arrProducts = [...arrProducts, res.data];
-
-// export const getTableRequest = createAsyncThunk("TABLE", (id) => {
-//   return axios
-//     .get(`http://localhost:3001/api/products/get/${id}`)
-//     .then((res) => (arrProducts = [...arrProducts, res.data]))
-//     .then((res) => res);
-// });

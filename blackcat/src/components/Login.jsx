@@ -43,7 +43,7 @@ const Login = () => {
               placeholder="contraseña"
             />
             {loading ? (
-              <button className="button is-link my-5 is-loading" type="submit">
+              <button className="button my-5 is-loading is-black is-pulled-right" type="submit">
                 Entrar
               </button>
             ) : (

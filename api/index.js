@@ -21,7 +21,7 @@ app.use(cookieParser());
 app.use(
   sessions({
     secret: "tmdb",
-    resave: true,
+    resave: false,
     saveUninitialized: true,
   })
 );

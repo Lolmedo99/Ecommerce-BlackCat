@@ -107,5 +107,12 @@ userRouter.post("/contacto", async (req, res) => {
     console.log(error);
   }
 });
+userRouter.get("/me", (req, res) => {
+  if (!req.user) {
+    return res.sendStatus(401);
+  }
+
+  res.send(req.user);
+});
 
 module.exports = userRouter;

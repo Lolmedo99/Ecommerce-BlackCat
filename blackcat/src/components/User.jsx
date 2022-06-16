@@ -26,32 +26,16 @@ useEffect(()=>{
 },[])
 
 
-
-
-// productRouter.get("/get/:id", async (req, res) => {
-//     try {
-//       const data = await Product.findByPk(req.params.id);
-//       res.send(data);
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   });
-// productRouter.get("/get/:id"
-
-
-
-    return(
-        
-        
-        <div class='pt-6 is-flex is-flex-direction-column'>
+return(         
+        <div class='pt-6'>
                 <div class='p-6'></div>
                 {user.admin?<div class='p-6' ><button class='m-6 is-size-6' onClick={()=>{handleClickAdmin()}}>INGRESO ADMIN</button>
                 <div class='p-6'></div></div>:
-                <div>
+                <div >
                 <h1 class='is-size-2'>Bienvenido {user.name}, este es tu historial de pedidos:</h1>
-                <ul>
+                <ul class='is-flex is-flex-direction-row is-flex-wrap-wrap'>
                 {orders.map((order)=>{return(
-                    <li class='p-6'>  <PreviousOrders order={order}/></li>   
+                    <li class='p-3 '>  <PreviousOrders order={order}/></li>   
                 )})}
                 </ul>
                 <div class='p-6'></div>
