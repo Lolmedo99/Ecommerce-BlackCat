@@ -39,6 +39,8 @@ function App() {
     });
   }, []);
 
+  useEffect(() => dispatch(postMeRequest()), []);
+
   let arrCart = useSelector((state) => state.selected);
 
   return (

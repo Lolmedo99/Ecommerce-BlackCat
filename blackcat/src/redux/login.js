@@ -5,10 +5,21 @@ export const postLoginRequest = createAsyncThunk(
   "LOGIN",
   ({ email, password }) => {
     return axios
-      .post("http://localhost:3001/api/users/login", {
-        email: email.value,
-        password: password.value,
-      })
+      .post(
+        "http://localhost:3001/api/users/login",
+        {
+          email: email.value,
+          password: password.value,
+        },
+        { withCredentials: true },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            "Access-Control-Allow-Origin": "http://localhost:3000/",
+          },
+        }
+      )
       .then((res) => {
         const user = {
           id: res.data.id,
@@ -16,13 +27,23 @@ export const postLoginRequest = createAsyncThunk(
           admin: res.data.admin,
         };
         localStorage.setItem("user", JSON.stringify(user));
-        return res.data;
+        return user;
       });
   }
 );
 export const postLogoutRequest = createAsyncThunk("LOGOUT", () => {
   return axios
-    .post("http://localhost:3001/api/users/logout")
+    .post(
+      "http://localhost:3001/api/users/logout",
+      { withCredentials: true },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "Access-Control-Allow-Origin": "http://localhost:3000/",
+        },
+      }
+    )
     .then((res) => res.data)
     .catch((err) => {
       console.log(err);
@@ -31,7 +52,17 @@ export const postLogoutRequest = createAsyncThunk("LOGOUT", () => {
 
 export const postMeRequest = createAsyncThunk("ME", () => {
   return axios
-    .get("http://localhost:3001/api/users/me")
+    .get(
+      "http://localhost:3001/api/users/me",
+      { withCredentials: true },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "Access-Control-Allow-Origin": "http://localhost:3000/",
+        },
+      }
+    )
     .then((res) => console.log("ACA RES DATA", res.data))
     .catch((err) => {
       console.log(err);

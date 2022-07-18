@@ -10,7 +10,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("./models/User");
 
-app.use(cors());
+app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 
 app.use(express.json());
 
@@ -54,13 +54,15 @@ passport.use(
 );
 
 passport.serializeUser(function (user, done) {
-  done(null, user.id);
+  console.log("SERIALIZE");
+  return done(null, user.id);
 });
 
 passport.deserializeUser(function (id, done) {
   User.findByPk(id)
     .then((user) => {
-      done(null, user);
+      console.log("DESERIALIZE");
+      return done(null, user);
     })
     .catch(done);
 });
