@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, forceUpdate, useReducer } from "react";
+import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductsRequest } from "../redux/products";
 import Card from "./Card";
@@ -9,6 +10,7 @@ function Grid() {
   const products = useSelector((state) => state.products);
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
+  const [reducerValue, forceUpdate] = useReducer((x) => x + 1, 0);
 
   useEffect(() => {
     dispatch(getProductsRequest());

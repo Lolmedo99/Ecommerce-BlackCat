@@ -1,7 +1,7 @@
 import React from "react";
 import { BiPhoneCall } from "react-icons/bi";
 import { SiMaildotru } from "react-icons/si";
-import { FaMapMarkerAlt } from "react-icons/fa";
+import { FaCcMastercard, FaCcVisa,FaMapMarkerAlt } from "react-icons/fa";
 import { BsFacebook } from "react-icons/bs";
 import { FaInstagramSquare } from "react-icons/fa";
 
@@ -20,10 +20,10 @@ function Footer() {
         <div class="column">
           <strong>MEDIOS DE PAGO</strong>
           <ul>
-            <img alt="visa"></img>
+          <FaCcVisa size={20}/>
           </ul>
           <ul>
-            <img alt="mastercard"></img>
+          <FaCcMastercard size={20}/>
           </ul>
           <ul>
             <img alt="mercado pago"></img>

@@ -1,8 +1,37 @@
+
+
+
 import React from "react";
 import { Link } from "react-router-dom";
 import QtySelector from "./QtySelector";
+import React, { useEffect, useReducer, forceUpdate } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { VscTrash } from "react-icons/vsc";
+import { FaPencilAlt } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { getMeRequest } from "../redux/me";
+import { deleteProductRequest } from "../redux/deletePruduct";
+
+
 
 function Card({ product }) {
+  // let arrCart = useSelector((state) => state.selected);
+  // console.log("SOY CART",arrCart)
+  const user = JSON.parse(localStorage.getItem("user")) || undefined;
+  const dispatch = useDispatch();
+  const me = useSelector((state) => state.me);
+
+  const handleDeleteProduct = (productId) => {
+    dispatch(deleteProductRequest(productId));
+    setTimeout(() => window.location.reload(), 500);
+    localStorage.removeItem("cart");
+  };
+
+  useEffect(() => {
+    dispatch(getMeRequest(user.id));
+  }, []);
+
   return (
     <div class="card">
       <div class="card-image">
@@ -28,6 +57,19 @@ function Card({ product }) {
         </div>
         <p class="has-text-centered">${product.price}</p>
       </div>
+      {me.admin === true ? (
+        <div class="card-footer ">
+          <div class="column is-flex  is-justify-content-space-between">
+            <FaPencilAlt class="is-clickable" />
+            <VscTrash
+              class="is-clickable"
+              onClick={() => handleDeleteProduct(product.id)}
+            />
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
 
       {product.stock === 0 ? (
         <div class="card-footer mt-6">

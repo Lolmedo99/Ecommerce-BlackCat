@@ -71,7 +71,6 @@ userRouter.get("/get/:id", async (req, res) => {
 
 //Promueve o degrada a Admin
 userRouter.put("/promote/:id", async (req, res) => {
-  console.log("ACA REQ BODY", req.body);
   try {
     const newData = await User.update(req.body, {
       where: { id: req.params.id },

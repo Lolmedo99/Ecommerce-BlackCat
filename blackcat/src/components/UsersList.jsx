@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useReducer } from "react";
 import { useEffect, useState, forceUpdate } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteUsersRequest, getUsersRequest } from "../redux/getUsers";
@@ -11,6 +11,7 @@ function UsersList() {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users);
   const me = JSON.parse(localStorage.getItem("user")) || undefined;
+  const [reducerValue, forceUpdate] = useReducer((x) => x + 1, 0);
 
   const handleDelete = (userId) => {
     dispatch(deleteUsersRequest(userId));
@@ -19,21 +20,21 @@ function UsersList() {
 
   const handleMakeAdmin = (userId) => {
     dispatch(createAdminRequest(userId));
-    window.location.reload();
+    setTimeout(() => {
+      forceUpdate();
+    }, 100);
   };
 
   const handleRemoveAdmin = (userId) => {
     dispatch(removeAdminRequest(userId));
-    window.location.reload();
+    setTimeout(() => {
+      forceUpdate();
+    }, 100);
   };
 
   useEffect(() => {
     dispatch(getUsersRequest(me.id));
-  }, []);
-
-  useEffect(() => {
-    console.log("ESTA FUNCANDO CON USERS");
-  }, [users]);
+  }, [reducerValue]);
 
   return (
     <div>
@@ -61,30 +62,30 @@ function UsersList() {
                 <th>BORRAR</th>
               </tr>
             </thead>
-            {users.length !== 0
-              ? users.map((user, index) => (
+            {users?.length !== 0
+              ? users?.map((user, index) => (
                   <tbody>
                     <tr>
-                      <th>{user.id}</th>
-                      <th>{user.name}</th>
-                      <th>{user.surname}</th>
-                      <th>{user.email}</th>
+                      <th>{user?.id}</th>
+                      <th>{user?.name}</th>
+                      <th>{user?.surname}</th>
+                      <th>{user?.email}</th>
                       <th>
                         <p class="has-text-centered">
-                          {user.admin === false ? "NO" : "SI"}
+                          {user?.admin === false ? "NO" : "SI"}
                         </p>
                       </th>
                       <th>
                         <p class="has-text-centered">
                           <button
                             class="button is-small"
-                            onClick={() => handleMakeAdmin(user.id)}
+                            onClick={() => handleMakeAdmin(user?.id)}
                           >
                             <FaCheck />
                           </button>
                           <button
                             class="button is-small"
-                            onClick={() => handleRemoveAdmin(user.id)}
+                            onClick={() => handleRemoveAdmin(user?.id)}
                           >
                             <TbLetterX />
                           </button>
@@ -95,7 +96,7 @@ function UsersList() {
                           <VscTrash
                             class="is-clickable"
                             size={20}
-                            onClick={() => handleDelete(user.id)}
+                            onClick={() => handleDelete(user?.id)}
                           />
                         </p>
                       </th>
