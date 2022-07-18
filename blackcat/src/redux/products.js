@@ -3,10 +3,11 @@ import { createReducer, createAsyncThunk } from "@reduxjs/toolkit";
 
 let prods = [];
 
-export const getProductsRequest = createAsyncThunk("PRODUCTS", async () => {
-  const response = await axios.get("http://localhost:3001/api/products/all");
-  const responseData = await response.data;
-  return responseData;
+export const getProductsRequest = createAsyncThunk("PRODUCTS", () => {
+  return axios
+    .get(`http://localhost:3001/api/products/get/${id}`)
+    .then((res) => (prods = [...prods, res.data]))
+    .then((res) => res);
 });
 
 export const getOrderProducts = createAsyncThunk("ORDER_PRODUCTS", (id) => {

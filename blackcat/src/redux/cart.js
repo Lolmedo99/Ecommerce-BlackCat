@@ -33,7 +33,6 @@ export const getSelectedProductsRequest = createAsyncThunk(
 export const deleteSelectedProductsRequest = createAsyncThunk(
   "DELETE_PRODUCT",
   (product) => {
-    console.log("DELETE");
     arrProducts = JSON.parse(localStorage.getItem("cart"));
     arrProducts.forEach((element, i) => {
       if (element.productId === product.id) {

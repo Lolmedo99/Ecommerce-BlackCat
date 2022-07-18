@@ -6,26 +6,33 @@ import { Link } from "react-router-dom";
 import QtySelector from "./QtySelector";
 import React, { useEffect, useReducer, forceUpdate } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { VscTrash } from "react-icons/vsc";
 import { FaPencilAlt } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { getMeRequest } from "../redux/me";
 import { deleteProductRequest } from "../redux/deletePruduct";
 
-
+import QtySelector from "./QtySelector";
+import { getProductDetailsRequest } from "../redux/productDetails";
 
 function Card({ product }) {
   // let arrCart = useSelector((state) => state.selected);
   // console.log("SOY CART",arrCart)
   const user = JSON.parse(localStorage.getItem("user")) || undefined;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const me = useSelector((state) => state.me);
 
   const handleDeleteProduct = (productId) => {
     dispatch(deleteProductRequest(productId));
     setTimeout(() => window.location.reload(), 500);
     localStorage.removeItem("cart");
+  };
+
+  const handleUpdate = (productId) => {
+    dispatch(getProductDetailsRequest(productId));
+    navigate("/update_prod");
   };
 
   useEffect(() => {
@@ -60,7 +67,11 @@ function Card({ product }) {
       {me.admin === true ? (
         <div class="card-footer ">
           <div class="column is-flex  is-justify-content-space-between">
-            <FaPencilAlt class="is-clickable" />
+            <FaPencilAlt
+              class="is-clickable"
+              onClick={() => handleUpdate(product.id)}
+            />
+
             <VscTrash
               class="is-clickable"
               onClick={() => handleDeleteProduct(product.id)}

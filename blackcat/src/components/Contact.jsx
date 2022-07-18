@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import { useState } from "react";
 
 import useInput from "../hooks/useInputs";
 
@@ -8,6 +9,8 @@ const Contact = () => {
   const email = useInput();
   const phone = useInput();
   const text = useInput();
+
+  const [Notif,setNotif] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,6 +21,7 @@ const Contact = () => {
       text: text.value,
     });
     e.target.reset();
+    setNotif(true)
   };
 
   return (
@@ -33,6 +37,13 @@ const Contact = () => {
             />
           </picture>
         </div>
+
+ {Notif ? <div class="notification is-success">
+            <button class="delete" onClick={()=>setNotif(false)}></button>
+            Tu mensaje ha sido enviado <strong>correctamente</strong>. Te estaremos
+            contestando a la brevedad.
+          </div> : ""}
+
         <div className="layout m-5" color="color2">
           <form onSubmit={handleSubmit}>
             <div class="field">

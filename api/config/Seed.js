@@ -85,7 +85,7 @@
 "description":" Bizcocho bañado con tres tipos de leche, con un merengue, cerezas al marraschino y espolvoreado con canela en polvo.",
 "ingredients":"Leche x3, harina de trigo, huevos, mantequilla.",
 "rating":3.5,
-"categories": "Tortas, Postres",
+"categories": "Tortas",
 "photo":"https://t2.rg.ltmcdn.com/es/posts/0/1/9/torta_tres_leches_8910_orig.jpg"
 } ,
 
@@ -105,7 +105,7 @@
 "description":"Cupcake con chispas de chocolate",
 "ingredients":"Harina, manteca, azúcar, chocolate y levadura",
 "rating":3.4,
-"categories": "Tortas, Postres",
+"categories": "Postres",
 "photo":"https://www.comedera.com/wp-content/uploads/2020/12/mike-meeks-zk-fclJdGas-unsplash-scaled.jpg"
 }
 ]

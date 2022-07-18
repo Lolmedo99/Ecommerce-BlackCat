@@ -4,8 +4,6 @@ const orderRouter = express.Router()
 const transporter = require('../config/mailer')
 const models = require('../models')
 
-//EN PROCESO, NINGUNA RUTA TERMINADA
-
 //Crear una orden
 orderRouter.post("/buy", async (req, res) => {
   let idOrder = 0
@@ -17,18 +15,18 @@ orderRouter.post("/buy", async (req, res) => {
       res.status(201).send(data)
 
     items.forEach(item => {
-     models.Order_Item.create({
+      models.Order_Item.create({
         amount: item.amount,
         orderId: idOrder,
         productId: item.productId
       })
-      }),
-       await transporter.sendMail({
-          from: '"Blackcat" <blackcatpasteleria@gmail.com>',
-          to: datos.email,
-          subject: "Pedido Realizado!",
-          html:
-            `<h1>¡ Gracias por comprar en BlackCat!</h1>
+    }),
+      await transporter.sendMail({
+        from: '"Blackcat" <blackcatpasteleria@gmail.com>',
+        to: datos.email,
+        subject: "Pedido Realizado!",
+        html:
+          `<h1>¡ Gracias por comprar en BlackCat!</h1>
                  <h3>Hola, ${datos.payerName}. Estos son los datos de tu pedido:</h3>
                  <b><u>Datos de Facturacion:</u></b>
                  <p>Nombre y Apellido : ${datos.payerName + " " + datos.payerSurname}</p>
@@ -39,11 +37,11 @@ orderRouter.post("/buy", async (req, res) => {
                 <p>Telefono de contacto: ${datos.seekerPhone}</p>
                 <h2>Recorda que tu pedido sera confirmado una vez que tu pago sea aprobado.</h2>
                 <h4>Una vez que esto ocurra, te llegara otro mail a esta casilla confirmando tu compra.</h4>`
-        })
-} catch (error) {
-      console.log(error)
-    }
-  })
+      })
+  } catch (error) {
+    console.log(error)
+  }
+})
 
 
 //Todas las ordenes de un usuario
@@ -118,7 +116,6 @@ orderRouter.get("/item/:id", async (req, res) => {
   } catch (error) {
     console.log(error)
   }
-
 })
 
 // Borrar un Order-Item

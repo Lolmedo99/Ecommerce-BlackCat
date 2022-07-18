@@ -92,6 +92,7 @@ userRouter.delete("/delete/:id", async (req, res) => {
 });
 
 //Contacto
+<<<<<<< HEAD
 userRouter.post("/contacto", async (req, res) => {
   console.log(req.body);
   try {
@@ -113,5 +114,21 @@ userRouter.get("/me", (req, res) => {
   console.log("SUCCESS");
   res.send(req.user);
 });
+=======
+userRouter.post("/contacto", async (req,res) => {
+ try {
+  await transporter.sendMail({
+          from: `${req.body.name} <blackcatpasteleria@gmail.com>`,
+          to: "blackcatpasteleria@gmail.com",
+          subject: "Formulario de contacto",
+          html: `<b>${req.body.text}</b> <p>Mail: ${req.body.email} Tel: ${req.body.phone}</p> `
+        })
+      res.sendStatus(200)
+} catch (error) {
+  console.log(error)
+} 
+})
+
+>>>>>>> 82e26b8e6efb91cc56cd0b900c3795ba0a28d228
 
 module.exports = userRouter;

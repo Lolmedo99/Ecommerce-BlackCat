@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { FaSearch } from "react-icons/fa";
 import { RiShoppingCart2Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -84,7 +83,10 @@ function NavBar() {
             <div class="buttons">
               {user ? (
                 <>
-                  <div class="column is-flex is-clickable" onClick={()=>navigate('/myuser')}>
+                  <div
+                    class="column is-flex is-clickable"
+                    onClick={() => navigate("/myuser")}
+                  >
                     <CgProfile size={30} />
                     <p class="subtitle">Hola {userJson.name}!</p>
                   </div>

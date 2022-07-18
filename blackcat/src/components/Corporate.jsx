@@ -18,7 +18,7 @@ const Corporate = () => {
         <div class="column  is-4">
           <p class="mb-2">
             Para consultas por pedidos empresariales/corporativos comunicarse
-            por mail a :blackcatpasteleria@gmail.com
+            por mail a:  <a href="mailto: blackcatpasteleria@gmail.com"> blackcatpasteleria@gmail.com </a> 
           </p>
           <p>
             ♡ Las reservas se realizan con un mínimo de 7 días de anticipación
